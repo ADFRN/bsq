@@ -1,47 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_map.c                                     :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/25 10:28:32 by afournie          #+#    #+#             */
-/*   Updated: 2025/08/25 11:40:07 by cn-goie          ###   ########.fr       */
+/*   Created: 2025/08/25 11:46:44 by cn-goie           #+#    #+#             */
+/*   Updated: 2025/08/25 12:58:22 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
 
-int	ft_strlen(char *str)
+void    ft_map_error()
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+    write(1, "map error\n", 10);   
 }
 
-int	ft_check_lines(char **map)
+void    ft_error()
 {
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		if (ft_strlen(map[i]) == ft_strlen(map[i]))
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-int	ft_check_map(char **map)
-{
-	if (ft_check_lines(map))
-	{
-	}
-	else
-		return (0);
+    write(1, "Error\n", 6);
 }

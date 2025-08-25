@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 10:10:06 by afournie          #+#    #+#             */
-/*   Updated: 2025/08/25 10:11:04 by afournie         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:48:25 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
 
-char *ft_create_str(char *file)
+char	*ft_create_str(char *file)
 {
-	int fd;
-	int n;
-	int size;
-	char *str;
-	char buffer[2];
+	int		fd;
+	int		n;
+	int		size;
+	char	*str;
+	char	buffer[2];
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -42,20 +42,16 @@ char *ft_create_str(char *file)
 
 int	main(int ac, char **av)
 {
-	char **map;
-	char *str;
+	char	**map;
+	char	*str;
 
 	if (ac < 2)
 		return (write(2, "Error\n", 6));
-
 	str = ft_create_str(*av[1]);
 	map = ft_split(str);
-
-
 	if (ft_check_map(*av[1]))
 	{
-
 	}
 	else
-		return(write(2, "map error\n", 10));
+		return (write(2, "map error\n", 10));
 }

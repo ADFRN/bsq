@@ -1,47 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_map.c                                     :+:      :+:    :+:   */
+/*   ft_line.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/25 10:28:32 by afournie          #+#    #+#             */
-/*   Updated: 2025/08/25 11:40:07 by cn-goie          ###   ########.fr       */
+/*   Created: 2025/08/25 12:52:27 by cn-goie           #+#    #+#             */
+/*   Updated: 2025/08/25 12:56:17 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
 
-int	ft_strlen(char *str)
+void    ft_line(char **)
 {
-	int	i;
+    int i;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+    char *line;
+    i = 0;
+    
+    ft_strlen(line);
+    // if Emptyline 
 
-int	ft_check_lines(char **map)
-{
-	int	i;
+    // if obs
 
-	i = 0;
-	while (map[i])
-	{
-		if (ft_strlen(map[i]) == ft_strlen(map[i]))
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-int	ft_check_map(char **map)
-{
-	if (ft_check_lines(map))
-	{
-	}
-	else
-		return (0);
+    // carree available 
+    
 }

@@ -1,47 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_map.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/25 10:28:32 by afournie          #+#    #+#             */
-/*   Updated: 2025/08/25 11:40:07 by cn-goie          ###   ########.fr       */
+/*   Created: 2025/08/25 13:00:43 by cn-goie           #+#    #+#             */
+/*   Updated: 2025/08/25 13:01:35 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bsq.h"
+#include <bsq.h>
 
-int	ft_strlen(char *str)
+int	ft_atoi(char *str)
 {
 	int	i;
+	int	res;
+	int	sign;
 
 	i = 0;
-	while (str[i])
+	res = 0;
+	sign = 1;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	return (i);
-}
-
-int	ft_check_lines(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
+	while (str[i] == '-' || str[i] == '+')
 	{
-		if (ft_strlen(map[i]) == ft_strlen(map[i]))
-			i++;
-		else
-			return (0);
+		if (str[i] == '-')
+			sign = sign * -1;
+		i++;
 	}
-	return (1);
-}
-
-int	ft_check_map(char **map)
-{
-	if (ft_check_lines(map))
+	while (str[i] >= '0' && str[i] <= '9')
 	{
+		res = res * 10 + (str[i] - '0');
+		i++;
 	}
-	else
-		return (0);
+	return (res * sign);
 }
