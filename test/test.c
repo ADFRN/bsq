@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:57:38 by cn-goie           #+#    #+#             */
-/*   Updated: 2025/08/25 16:04:57 by cn-goie          ###   ########.fr       */
+/*   Updated: 2025/08/25 17:20:03 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,60 @@
 #define N 4
 #define M 5
 
+void ft_swap(int *a, int *b)
+{
+    int temp;
+
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void ft_sort(int arr[], int n){
+    int i;
+    int j;
+    int swapped;
+
+    i = 0;
+    j = 0;
+    
+    while (i < n - 1) 
+    {
+        swapped = 0;
+        while (j < (n - i)- 1) 
+        {
+            if (arr[j] > arr[j + 1]) 
+            {
+                ft_swap(&arr[j], &arr[j + 1]);
+                swapped = 1;
+            }
+            j++;
+        }
+        if (swapped == 0)
+            break;
+    j = 0;
+    i++; 
+    }
+}
+
 int min(int a, int b, int c)
 {
-    int m;
-    m = a;
-    if (b < m) b = m;
-    if (c < m) c = m;
-    return (m);
+    int arr[] = 
+    {
+        a, b, c
+    };
+    ft_sort(arr, 3);
+    return (arr[0] + 1);
 }
 
 int main (void)
 {
-    char map[N][M+1] = 
+    char *map[N][M+1] = 
     {
         ".....",
-        "o.o.o",
+        "..o.o",
         "....o",
-        "....."
+        ".....",
         "oo..."
     };
 
@@ -50,9 +87,9 @@ int main (void)
     while (i < N)
     {
         j = 0;
-        while (j < N)
+        while (j <= N)
         {
-            if (map[i][j] == 'o')
+            if ((*map[i][j] = 'o'))
                 jsp[i][j] = 0;
             else if (i == 0 || j == 0)
                 jsp[i][j] = 1;
@@ -70,21 +107,20 @@ int main (void)
         }i++;
     }
     i = max_i;
+    i = 0;
     while (i > max_i)
     {
         j = max_j;
         while(j > max_j)
         {
-            map[i][j] = 'x';
+            *map[i][j] = 'x';
             j--;
         }
         i--;        
     }
     while (i < N)
     {
-        printf("%s", map[i]);
+        printf("%s", *map[i]);
         i++;
     }
-}  
-
-        
+}
