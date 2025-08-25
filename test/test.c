@@ -6,14 +6,14 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:57:38 by cn-goie           #+#    #+#             */
-/*   Updated: 2025/08/25 17:20:03 by afournie         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:53:49 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 4
+#define N 5
 #define M 5
 
 void ft_swap(int *a, int *b)
@@ -64,13 +64,13 @@ int min(int a, int b, int c)
 
 int main (void)
 {
-    char *map[N][M+1] = 
+    char map[N][M + 1] = 
     {
         ".....",
-        "..o.o",
-        "....o",
+        "o....",
+        "o....",
         ".....",
-        "oo..."
+        "....o"
     };
 
     int jsp[N][M];
@@ -89,7 +89,7 @@ int main (void)
         j = 0;
         while (j <= N)
         {
-            if ((*map[i][j] = 'o'))
+            if (map[i][j] == 'o')
                 jsp[i][j] = 0;
             else if (i == 0 || j == 0)
                 jsp[i][j] = 1;
@@ -107,20 +107,39 @@ int main (void)
         }i++;
     }
     i = max_i;
-    i = 0;
     while (i > max_i)
     {
         j = max_j;
         while(j > max_j)
         {
-            *map[i][j] = 'x';
+            map[i][j] = 'x';
             j--;
         }
         i--;        
     }
+    i = 0;
     while (i < N)
     {
-        printf("%s", *map[i]);
+        j = 0;
+        while(map[i][j])
+        {
+            printf("%c", map[i][j]);
+            j++;            
+        }
+            printf("\n");
+        i++;
+    }
+    printf("\n");
+    i = 0;
+    while (i < N)
+    {
+        j = 0;
+        while(j < N)
+        {
+            printf("%d", jsp[i][j]);
+            j++;            
+        }
+            printf("\n");
         i++;
     }
 }
