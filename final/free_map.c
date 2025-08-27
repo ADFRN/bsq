@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 14:46:23 by cn-goie           #+#    #+#             */
-/*   Updated: 2025/08/27 14:55:46 by cn-goie          ###   ########.fr       */
+/*   Updated: 2025/08/27 21:52:25 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
 
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (i < map->rows)
-    {
-        free(map->grid[i]);
-        i++;
-    }
-    free(map->grid);
-    free(map);
+	i = 0;
+	while (i < map->rows)
+	{
+		free(map->grid[i]);
+		i++;
+	}
+	free(map->grid);
+	free(map);
 }
