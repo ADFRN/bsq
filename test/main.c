@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 10:10:06 by afournie          #+#    #+#             */
-/*   Updated: 2025/08/25 21:29:51 by cn-goie          ###   ########.fr       */
+/*   Updated: 2025/08/26 16:39:26 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int ac, char **av)
 			arg++;
 			continue ;
 		}
-		**map = ft_parsing(row, col, empty, full, );
+		**map = ft_parsing();
 		free(buf);
 		if (!map)
 		{

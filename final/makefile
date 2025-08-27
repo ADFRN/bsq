@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+         #
+#    By: afournie <afournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/27 09:37:28 by cn-goie           #+#    #+#              #
-#    Updated: 2025/08/27 14:56:14 by cn-goie          ###   ########.fr        #
+#    Updated: 2025/08/27 15:17:31 by afournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = bsq
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -g3
 
 SRC = main.c ft_parsing.c read_file.c solve.c 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 10:24:07 by cn-goie           #+#    #+#             */
-/*   Updated: 2025/08/27 14:54:27 by cn-goie          ###   ########.fr       */
+/*   Updated: 2025/08/27 15:20:44 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void solver(t_map *map)
     int max_i;
     int max_j;
 
+    max_size = 0;
+    max_i = 0;
+    max_j = 0;
+
     jsp = (int **)malloc(sizeof(int *) * map->rows);
     i = 0;
     while (i < map->rows)
@@ -49,7 +53,7 @@ void solver(t_map *map)
             jsp[i][j] = 1;
         else 
             jsp[i][j] = min(jsp[i - 1][j], jsp[i][j - 1], jsp[i - 1][j - 1]);
-        if ( jsp[i][j] > max_size)
+        if (jsp[i][j] > max_size)
         {
             max_size = jsp[i][j];
             max_i = i;
