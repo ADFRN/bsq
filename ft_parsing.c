@@ -3,83 +3,92 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/25 19:10:46 by afournie          #+#    #+#             */
-/*   Updated: 2025/08/25 21:17:47 by afournie         ###   ########.fr       */
+/*   Created: 2025/08/27 09:37:42 by cn-goie           #+#    #+#             */
+/*   Updated: 2025/08/27 23:35:19 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
+#include "bsq.h"
+#include <stdlib.h>
 
-char ft_parsing_lines(char *str, char *empty, char *object, char *carre)
+int	ft_atoi(char *str, int len)
 {
-    int i;
-    char lines_total[5];
-    
-    i = 0;
-    while(str[i] > 47 && str[i] < 58)
-    {
-        lines_total[i] = str[i];
-        i++;
-    }
-    *empty = str[i];
-    *object = str[i + 1];
-    *carre = str[i + 2];
+	int	i;
+	int	res;
 
-    return (*lines_total);
+	i = 0;
+	res = 0;
+	while (i < len)
+	{
+		res = res * 10 + (str[i] - '0');
+		i++;
+	}
+	return (res);
 }
 
-int ft_parsing_line_lenght(char *str)
+t_map	*init_map(char *buf, int *index)
 {
-    int i;
-    
-    i = 0;
-    while(str[i] != '\0')
-        i++;  
-    return (i);
+	t_map	*map;
+	int		i;
+
+	map = malloc(sizeof(t_map));
+	if (!map)
+		return (NULL);
+	i = 0;
+	while (buf[i] >= '0' && buf[i] <= '9')
+		i++;
+	map->rows = ft_atoi(buf, i);
+	map->empty = buf[i];
+	map->obs = buf[i + 1];
+	map->full = buf[i + 2];
+	i += 3;
+	if (buf[i] == '\n')
+		i++;
+	map->cols = 0;
+	while (buf[i + map->cols] && buf[i + map->cols] != '\n')
+		map->cols++;
+	*index = i;
+	map->grid = malloc(sizeof(char *) * map->rows);
+	if (!map->grid)
+		return (NULL);
+	return (map);
 }
 
-void ft_parsing(char *str[])
+int	fill_grid(t_map *map, char *buf, int start)
 {
-    char empty;
-    char object;
-    char carre;
-    char lines_total[2];
-    int line_lenght;
+	int	j;
+	int	k;
 
-    empty = 'a';
-    object = 'a';
-    carre = 'a';
-    
-    *lines_total = ft_parsing_lines(str[0], &empty, &object, &carre);
-    line_lenght = ft_parsing_line_lenght(str[1]);
-
-    write(1, &empty, 1);
-    printf("\n");
-    write(1, &object, 1);
-    printf("\n");
-    write(1, &carre, 1);
-    printf("\n");
-    write(1, &lines_total, 1);
-    printf("\n");
-    printf("Line height: %d\n",line_lenght);    
+	j = 0;
+	while (j < map->rows)
+	{
+		map->grid[j] = malloc(sizeof(char) * (map->cols + 1));
+		if (!map->grid[j])
+			return (0);
+		k = 0;
+		while (k < map->cols)
+		{
+			map->grid[j][k] = buf[start + k];
+			k++;
+		}
+		map->grid[j][k] = '\0';
+		start += map->cols + 1;
+		j++;
+	}
+	return (1);
 }
 
-int main()
+t_map	*ft_parsing(char *buf)
 {
-    char *test[] = {
-        "58p.6",
-        "...........................",
-        "....o......................",
-        "............o.............."
-        "...........................",
-        "....o......................",
-        "...............o...........",
-        "...........................",
-        "......o..............o.....",
-        "..o.......o................"
-    };
-    ft_parsing(test);    
+	t_map	*map;
+	int		index;
+
+	map = init_map(buf, &index);
+	if (!map)
+		return (NULL);
+	if (!fill_grid(map, buf, index))
+		return (NULL);
+	return (map);
 }

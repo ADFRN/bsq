@@ -5,53 +5,79 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/25 10:10:06 by afournie          #+#    #+#             */
-/*   Updated: 2025/08/25 11:48:25 by cn-goie          ###   ########.fr       */
+/*   Created: 2025/08/27 09:27:56 by cn-goie           #+#    #+#             */
+/*   Updated: 2025/08/27 23:35:22 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
 
-char	*ft_create_str(char *file)
+void	free_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->rows)
+	{
+		free(map->grid[i]);
+		i++;
+	}
+	free(map->grid);
+	free(map);
+}
+
+int	process_file(char *filename)
 {
 	int		fd;
-	int		n;
-	int		size;
-	char	*str;
-	char	buffer[2];
+	char	*buf;
+	t_map	*map;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-	{
-		write(1, "map error\n", 11);
-		return (NULL);
-	}
-	n = read(fd, buffer, 1);
-	size = n;
-	while (n > 0)
-	{
-		n = read(fd, buffer, 1);
-		size += n;
-	}
-	str = malloc(sizeof(char) * size);
-	if (!str)
-		return (NULL);
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (write(2, "map error\n", 10), 1);
+	buf = read_file(fd);
 	close(fd);
-	return (str);
+	if (!buf)
+		return (write(2, "map error\n", 10), 1);
+	map = ft_parsing(buf);
+	free(buf);
+	if (!map)
+		return (write(2, "map error\n", 10), 1);
+	solver(map);
+	free_map(map);
+	return (0);
+}
+
+int	process_stdin(void)
+{
+	char	*buf;
+	t_map	*map;
+
+	buf = read_file(0);
+	if (!buf)
+		return (write(2, "map error\n", 10), 1);
+	map = ft_parsing(buf);
+	free(buf);
+	if (!map)
+		return (write(2, "map error\n", 10), 1);
+	solver(map);
+	free_map(map);
+	return (0);
 }
 
 int	main(int ac, char **av)
 {
-	char	**map;
-	char	*str;
+	int	arg;
 
 	if (ac < 2)
-		return (write(2, "Error\n", 6));
-	str = ft_create_str(*av[1]);
-	map = ft_split(str);
-	if (ft_check_map(*av[1]))
+		return (process_stdin(), 0);
+	arg = 1;
+	while (arg < ac)
 	{
+		process_file(av[arg]);
+		arg++;
+		if (arg < ac)
+			write(1, "\n", 1);
 	}
-	else
-		return (write(2, "map error\n", 10));
+	return (0);
 }
