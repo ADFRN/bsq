@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 09:33:25 by cn-goie           #+#    #+#             */
-/*   Updated: 2025/08/27 23:35:56 by cn-goie          ###   ########.fr       */
+/*   Updated: 2025/12/16 14:18:08 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static char	*grow_buffer(char *buf, int *cap, int total)
 
 char	*read_file(int fd)
 {
-	char    *buf;
-	int total;
-	int r;
-	int cap;
+	char	*buf;
+	int		total;
+	int		r;
+	int		cap;
 
 	cap = BUF_SIZE;
 	buf = malloc(cap);

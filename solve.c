@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 10:24:07 by cn-goie           #+#    #+#             */
-/*   Updated: 2025/08/27 23:35:30 by cn-goie          ###   ########.fr       */
+/*   Updated: 2025/12/16 14:19:32 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ void	print_and_free(t_map *map, int **jsp)
 
 void	solver(t_map *map)
 {
-	int **jsp;
-	int max_size;
-	int max_i;
-	int max_j;
+	int	**jsp;
+	int	max_size;
+	int	max_i;
+	int	max_j;
 
 	max_size = 0;
 	max_i = 0;
